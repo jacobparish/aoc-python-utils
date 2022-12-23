@@ -3,6 +3,6 @@ name = "aoc-python-utils"
 version = "0.1.0"
 description = "My Advent of Code Python utils."
 authors = [
-    "Jacob Parish",
+    {name = "Jacob Parish"}
 ]
 readme = "README.md"
