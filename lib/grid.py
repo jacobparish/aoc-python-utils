@@ -1,5 +1,5 @@
 import numpy as np
-from geometry2d import Vec2
+from .geometry2d import Vec2
 
 
 class Grid:
