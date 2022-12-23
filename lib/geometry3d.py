@@ -1,4 +1,4 @@
-from geometry2d import Vec2
+from .geometry2d import Vec2
 from typing import Iterable, NamedTuple
 
 
