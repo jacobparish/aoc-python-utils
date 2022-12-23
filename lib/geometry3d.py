@@ -164,7 +164,7 @@ class Box3(NamedTuple):
         )
 
 
-def bounding_box(vecs: Iterable[Vec3]) -> Box3:
+def bounding_box3(vecs: Iterable[Vec3]) -> Box3:
     vecs_i = iter(vecs)
     xmin, ymin, zmin = next(vecs_i)
     xmax, ymax, zmax = xmin, ymin, zmin

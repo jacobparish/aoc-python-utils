@@ -147,7 +147,7 @@ class Box2(NamedTuple):
         return 2 * (self.width + self.height)
 
 
-def bounding_box(vecs: Iterable[Vec2]) -> Box2:
+def bounding_box2(vecs: Iterable[Vec2]) -> Box2:
     vecs_i = iter(vecs)
     xmin, ymin = next(vecs_i)
     xmax, ymax = xmin, ymin
