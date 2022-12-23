@@ -1,5 +1,5 @@
-from .geometry2d import Vec2
 from typing import Iterable, NamedTuple
+from .geometry2d import Vec2
 
 
 class Vec3(NamedTuple):
