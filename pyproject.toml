@@ -1,5 +1,5 @@
 [project]
-name = "aoc-python-utils"
+name = "aocutils"
 version = "0.1.0"
 description = "My Advent of Code Python utils."
 authors = [
