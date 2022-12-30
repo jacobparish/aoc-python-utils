@@ -1,4 +1,5 @@
-from queue import SimpleQueue
+from queue import PriorityQueue, SimpleQueue
+from collections import defaultdict
 from typing import Callable, Iterable, TypeVar
 
 
@@ -44,3 +45,30 @@ def shortest_path(s: V, t: V, get_neighbors: Callable[[V], Iterable[V]]) -> int:
         return dists[t]
     else:
         raise NodeUnreachableError(f"{t} is not reachable from {s}")
+
+
+def dijkstra(
+    s: V,
+    get_neighbors: Callable[[V], Iterable[tuple[V, int]]],
+    stop_condition: Callable[[V], bool] = lambda _: False,
+):
+    q = PriorityQueue()
+    q.put([0, s, False])
+    q_dict = {}
+    dists = defaultdict(lambda: float("inf"))
+    while not q.empty():
+        vdist, v, iv = q.get()
+        if iv:
+            continue
+        for w, wcost in get_neighbors(v):
+            wdist = wcost + vdist
+            if wdist < dists[w]:
+                dists[w] = wdist
+                if stop_condition(w):
+                    return dists
+                if w in q_dict:
+                    q_dict[w][-1] = True
+                entry = [wdist, w, False]
+                q_dict[w] = entry
+                q.put(entry)
+    return dists
