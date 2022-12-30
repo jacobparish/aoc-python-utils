@@ -47,11 +47,7 @@ def shortest_path(s: V, t: V, get_neighbors: Callable[[V], Iterable[V]]) -> int:
         raise NodeUnreachableError(f"{t} is not reachable from {s}")
 
 
-def dijkstra(
-    s: V,
-    get_neighbors: Callable[[V], Iterable[tuple[V, int]]],
-    stop_condition: Callable[[V], bool] = lambda _: False,
-):
+def dijkstra(s: V, get_neighbors: Callable[[V], Iterable[tuple[V, int]]]):
     q = PriorityQueue()
     q.put([0, s, False])
     q_dict = {}
@@ -64,8 +60,6 @@ def dijkstra(
             wdist = wcost + vdist
             if wdist < dists[w]:
                 dists[w] = wdist
-                if stop_condition(w):
-                    return dists
                 if w in q_dict:
                     q_dict[w][-1] = True
                 entry = [wdist, w, False]
