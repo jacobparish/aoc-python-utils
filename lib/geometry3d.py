@@ -130,6 +130,12 @@ class Vec3(NamedTuple):
         """
         return (self - other).norm1()
 
+    def norm2squared(self):
+        """
+        Return L2 norm squared.
+        """
+        return self.x**2 + self.y**2 + self.z**2
+
 
 class Box3(NamedTuple):
     xmin: int

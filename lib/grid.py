@@ -36,6 +36,12 @@ class Grid:
     def __getitem__(self, key):
         return self.data[key]
 
+    def __contains__(self, key):
+        if isinstance(key, Vec2):
+            return 0 <= key.x < self.nrows and 0 <= key.y < self.ncols
+        else:
+            return NotImplemented
+
     def find(self, val) -> Vec2:
         [i], [j] = np.where(self.data == val)
         return Vec2(i, j)
@@ -74,3 +80,12 @@ class CharGrid(Grid):
         else:
             width = max(len(s) for s in data)
             super().__init__([list(s.ljust(width, pad)) for s in data])
+
+    def print_local(self, pt: Vec2, r: int, ptchar=None):
+        for i in range(max(0, pt.x - r), min(self.nrows, pt.x + r)):
+            print(
+                "".join(
+                    ptchar if ptchar and (i, j) == pt else self.data[i, j]
+                    for j in range(max(0, pt.y - r), min(self.ncols, pt.y + r))
+                )
+            )
